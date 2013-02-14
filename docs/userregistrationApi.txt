@@ -1,0 +1,61 @@
+
+Description
+-----------
+
+Enable an API REST to allow 3rd party components to update some values of the users from the userregistration data source.
+
+
+Dependence
+----------
+
+"userregistrationApi" module is an extension of the "userregistration" module. (require this module enabled and configured)
+
+
+Authentication
+--------------
+
+The are 3 possible method to authenticate a request:
+
+* Send the param 'apikey' with a valid value as a Get param
+* Set an Auth Basic Header with the apikey as password  (the user is ignored)
+* Set a Authentication Header with the value:  APIKEY XXXXX  , where XXXX is the value of the apikey
+
+Configuration
+-------------
+
+At config-template/module_userregistration-api.php you have a template to help you configure this module.
+Copy the file in the simplesamlphp's directory and configure it depending your needs.
+
+Params:
+
+* 'api.key'.  The key of the API. Required in order to authenticate each request.
+
+* 'api.resources'. An array describing the resources of the API, currently only exists the user resource.
+                   The key of the array is an allowed HTTP method, the value is an array with the supported attributes for this method.
+                   Only the attributes defined on the array will be will be considered. For ex:
+                    * The attributes defined in a GET method will be the attributes that will be returned. (also the idAttr will be returned)
+                    * The attributes defined in a PUT method will be the attributes that will be changed.
+
+Usage
+-----
+
+The main service is published at:
+
+https://<domain+simplesamlpath>/module.php/userregistrationApi/api.php
+
+
+Recourses:
+
+https://<domain+simplesamlpath>/module.php/userregistrationApi/api.php/users/<idAttr>
+    * GET. On success returns an array with the data of the user identified by <idAttr>.  The keys of the array are the 'attribues' configured for this method in the 
+           configuration file of the api.
+           Output:
+
+			{"l":["seville"],"mail":["testuser@example.com"],"postalCode":["41013"],"sn":["Test"],"st":["seville"],
+             "eduPersonAffiliation":["student","teacher"],"cn":["User"],"schacUserStatus":["code1","code2"]}
+
+            
+    * PUT. On sucess returns "User <idAttr> Updated".  (Advise: After a PUT, always make a GET to check that the values really have changed).
+
+
+
