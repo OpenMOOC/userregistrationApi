@@ -23,7 +23,7 @@ class sspmod_userregistrationApi_User {
 			if (!isset($userData[$this->userIdAttr])) {
 				$userData[$this->userIdAttr] = $id;
 			}
-			$this->service->sendResponse(200, $user);
+			$this->service->sendResponse(200, $userData);
 		}
 		else {
 			$this->service->sendResponse(404, array('success' => FALSE));
