@@ -1,0 +1,20 @@
+{
+    "id"            : "userregistrationApi",
+    "name"          : "userregistrationApi",
+    "descr"         : "Enable an API REST to allow 3rd party components to update some values of the users from the userregistration data source.",
+    "definition"    : "https://github.com/OpenMOOC/userregistrationApi/blob/master/definition.json",
+    "branch"        : "dev",
+    "access"        : {
+        "dev"       : {
+            "type"      : "git",
+            "version"   : "0.1.0",
+            "url"       : "git@github.com:OpenMOOC/userregistrationApi.git"
+        },
+        "stable"       : {
+            "type"      : "tar.gz",
+            "version"   : "0.1.0",
+            "url"       : "https://github.com/OpenMOOC/userregistrationApi/archive/userregistration-apiv0.1.0.tar.gz"
+        }
+    }  
+}
+
